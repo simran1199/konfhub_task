@@ -18,8 +18,10 @@ app.get("/task", function(req, res){
   }else{
 	  if(response.statusCode ==200){
 		 var data= JSON.parse(body);
-		  //res.send(parseddata["paid"][0]["city"]);
-		  res.render("index",{data:data});
+		  var mydata=data["paid"];
+		   data["paid"]=Array.from(new Set(mydata.map(JSON.stringify))).map(JSON.parse);
+		  res.render("index",{data:data["paid"]});
+		  
 	  }
 	  
   }
