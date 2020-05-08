@@ -20,8 +20,26 @@ app.get("/task", function(req, res){
 		 var data= JSON.parse(body);
 		 var mydatap=data["paid"];
 		  var mydataf=data["free"];
+		  //for removing exact duplicate entries
 		  data["paid"]=Array.from(new Set(mydatap.map(JSON.stringify))).map(JSON.parse);
 		  data["free"]=Array.from(new Set(mydataf.map(JSON.stringify))).map(JSON.parse);
+		  
+		  //for removing semantic duplicates
+		  data["paid"].sort( function( a, b){ return a.conference_id - b.conference_id; } );
+for( var i=0; i<data["paid"].length-1; i++ ) {
+  if ( data["paid"][i].conference_id == data["paid"][i+1].conference_id ) {
+    delete data["paid"][i];
+  }
+}
+		  
+		  
+		  data["free"].sort( function( a, b){ return a.conference_id - b.conference_id; } );
+for( var i=0; i<data["free"].length-1; i++ ) {
+  if ( data["free"][i].conference_id == data["free"][i+1].conference_id ) {
+    delete data["free"][i];
+  }
+}
+		  
 		  res.render("index",{datap:data["paid"],dataf:data["free"]});
 		  
 	  }
