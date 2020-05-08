@@ -3,7 +3,7 @@ var app=express();
 var request = require('request');
 
 app.set("view engine", "ejs");
-app.use(express.static("/public"));
+app.use(express.static(__dirname + "/public"));
 
 
 app.get("/", function(req, res){
@@ -18,9 +18,11 @@ app.get("/task", function(req, res){
   }else{
 	  if(response.statusCode ==200){
 		 var data= JSON.parse(body);
-		  var mydata=data["paid"];
-		   data["paid"]=Array.from(new Set(mydata.map(JSON.stringify))).map(JSON.parse);
-		  res.render("index",{data:data["paid"]});
+		 var mydatap=data["paid"];
+		  var mydataf=data["free"];
+		  data["paid"]=Array.from(new Set(mydatap.map(JSON.stringify))).map(JSON.parse);
+		  data["free"]=Array.from(new Set(mydataf.map(JSON.stringify))).map(JSON.parse);
+		  res.render("index",{datap:data["paid"],dataf:data["free"]});
 		  
 	  }
 	  

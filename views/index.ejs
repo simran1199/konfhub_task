@@ -1,8 +1,142 @@
-<h1>
-	display page
-</h1>
-<ol>
-	<% data.forEach(function(info){ %>
-	<li><%=info["city"]%></li>
-<%})%>
-</ol>
+<! DOCTYPE html>
+<html>
+	<head>
+		<title>konfhub</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet"  href="/stylesheets/main.css">
+	</head>
+	<body>
+		
+		
+		<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="/">KONFHUB</a>		
+		</div>
+	</div>
+        </nav>
+		
+		
+	<div class="container">
+		
+		
+		
+		<header class="jumbotron">
+			<div class="container">
+				<h1>
+			CONFERENCE DETAILS
+		</h1>
+				<p>
+				Details about Free and Paid conferences are provided
+			</p>
+			</div>
+		</header>
+		
+		<h1 style="text-align:center;"><strong>Free Conferences</strong></h1>
+		
+		<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+			<% dataf.forEach(function(info){ %>
+			<div class="col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="<%= info["imageURL"]%>">
+					<div class="caption">
+						<h5><strong><%= info["confName"]%></strong>,<%=info["city"]%>,<%=info["country"]%></h5>
+						
+						<p>
+							<h6>
+								<strong>Venue: </strong>
+								<%=info["venue"]%>
+						</h6>
+						</p>
+					
+						<p>
+							<h6>
+								<strong>From: </strong>
+								<%=info["confStartDate"]%> <strong>to</strong> <%=info["confEndDate"]%>
+						</h6>
+						</p>
+				
+						<p>
+							<h6>
+								<strong>Want to Learn more: </strong>
+								<a href="<%=info["conUrl"]%>">Click here!! </a> 
+						</h6>
+						</p>
+				
+					
+						<p>
+							<h6>
+								<strong>For Registration: </strong>
+								<a href="<%=info["confRegUrl"]%>">Click Here!!</a> 
+						</h6>
+						</p>
+						
+					</div>
+				</div>
+			</div>
+			<% });%>
+			
+		</div>
+		
+		<h1 style="text-align:center;"><strong>Paid Conferences</strong></h1>
+		
+		<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+			<% datap.forEach(function(info){ %>
+			<div class="col-md-3 col-sm-6">
+				<div class="thumbnail">
+					<img src="<%= info["imageURL"]%>">
+					<div class="caption">
+						<h5><strong><%= info["confName"]%></strong>,<%=info["city"]%>,<%=info["country"]%></h5>
+						<p>
+							<h6>
+								<strong>Venue: </strong>
+								<%=info["venue"]%>
+						</h6>
+						</p>
+					
+					<p>
+							<h6>
+								<strong>From: </strong>
+								<%=info["confStartDate"]%> <strong>to</strong> <%=info["confEndDate"]%>
+						</h6>
+						</p>
+					
+				<p>
+							<h6>
+								<strong>Want to Learn more: </strong>
+								<a href="<%=info["conUrl"]%>">Click here!! </a> 
+						</h6>
+						</p>
+				
+					
+				<p>
+							<h6>
+								<strong>For Registration: </strong>
+								<a href="<%=info["confRegUrl"]%>">Click Here!!</a> 
+						</h6>
+						</p>
+					
+				
+					</div>
+				</div>
+			</div>
+			<% });%>
+			
+		</div>
+				
+	
+</div>
+		
+		
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
